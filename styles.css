@@ -356,34 +356,31 @@ section { position: relative; }
 .shot--tall { grid-row: span 2; }
 
 /* ============================================================
-   БЛОК 4 · РЕГИСТРАЦИЯ
+   БЛОК 4 · РЕГИСТРАЦИЯ (нативная форма -> Google Forms)
    ============================================================ */
 .signup {
   padding: clamp(64px, 8vw, 110px) 0;
   background: var(--black-2);
 }
-.signup__box {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-  border: 1px solid var(--line);
-  background: var(--black);
-  padding: clamp(32px, 5vw, 60px) clamp(20px, 4vw, 56px);
+.signup__grid {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
 }
 .signup .h2 { margin-bottom: 16px; }
 .signup__lead {
   font-size: 16px;
   color: var(--text-dim);
-  margin: 0 auto;
-  max-width: 46ch;
+  margin: 0;
+  max-width: 38ch;
 }
 
 /* Памятка */
 .notes {
   list-style: none;
-  margin: 32px 0 36px;
+  margin: 30px 0 0;
   padding: 0;
-  text-align: left;
   border-top: 1px solid var(--line);
 }
 .notes li {
@@ -406,12 +403,90 @@ section { position: relative; }
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
 
-.signup__btn { padding-left: 52px; padding-right: 52px; }
-.signup__note {
-  margin: 18px 0 0;
-  font-size: 13px;
-  color: #7A7A7E;
+/* Форма */
+.form {
+  background: #fff;
+  color: var(--black-3);
+  padding: clamp(24px, 3.4vw, 42px);
 }
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.field { margin-bottom: 18px; }
+.field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #6E6E74;
+  margin-bottom: 8px;
+}
+.field label .req { color: var(--red); }
+.field input[type="text"],
+.field input[type="tel"],
+.field select {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--black-3);
+  background: var(--light);
+  border: 1px solid transparent;
+  border-radius: 0;
+  outline: none;
+  transition: border-color .2s ease, background .2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field select {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E6E74' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 42px;
+}
+.field input:focus,
+.field select:focus {
+  border-color: var(--red);
+  background: #fff;
+}
+
+.consent {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 12px;
+  align-items: start;
+  margin: 6px 0 24px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #6E6E74;
+}
+.consent input {
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  accent-color: var(--red);
+}
+
+.form__note {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: #8A8A90;
+  text-align: center;
+}
+
+.form__done {
+  display: none;
+  text-align: center;
+  padding: 40px 10px;
+}
+.form__done .h3 { margin-bottom: 12px; color: var(--black-3); }
+.form__done p { color: #55555A; font-size: 15px; margin: 0 auto; max-width: 34ch; }
+.form.is-sent .form__body { display: none; }
+.form.is-sent .form__done { display: block; }
+.btn[disabled] { opacity: .6; pointer-events: none; }
 
 /* ============================================================
    БЛОК 5 · ФУТЕР
@@ -465,6 +540,7 @@ section { position: relative; }
    ============================================================ */
 @media (max-width: 1000px) {
   .gallery__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
+  .signup__grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -481,7 +557,7 @@ section { position: relative; }
   .timeline li { grid-template-columns: 1fr; gap: 4px; }
   .gallery__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; gap: 8px; }
   .shot--tall { grid-row: auto; }
-  .signup__btn { width: 100%; justify-content: center; padding-left: 24px; padding-right: 24px; }
+  .form__row { grid-template-columns: 1fr; gap: 0; }
   .footer__hash { font-size: 18px; }
 }
 

@@ -134,26 +134,79 @@
 
 <!-- ============================================================
      БЛОК 4 · РЕГИСТРАЦИЯ
-     Кнопка ведёт на форму Microsoft Forms. Ссылка — в href ниже.
+     Форма на странице; ответы уходят в Google Форму
+     (идентификаторы entry.* привязаны к её полям).
      ============================================================ -->
 <section class="signup" id="form">
   <div class="wrap">
-    <div class="signup__box reveal">
-      <p class="eyebrow eyebrow--muted">Регистрация</p>
-      <h2 class="h2">Записаться на экскурсию</h2>
-      <p class="signup__lead">Одна заявка — на всю семью или компанию. Перед экскурсией мы позвоним и подтвердим место в группе.</p>
+    <div class="signup__grid">
+      <div class="signup__intro reveal">
+        <p class="eyebrow eyebrow--muted">Регистрация</p>
+        <h2 class="h2">Записаться на экскурсию</h2>
+        <p class="signup__lead">Одна заявка — на всю семью или компанию. Перед экскурсией мы позвоним и подтвердим место в группе.</p>
 
-      <ul class="notes">
-        <li>Каску и жилет выдадим на месте.</li>
-        <li>Обувь закрытая, одежда по погоде.</li>
-        <li>Дети — только с взрослыми.</li>
-        <li>Без подтверждения от организаторов место не считается забронированным.</li>
-      </ul>
+        <ul class="notes">
+          <li>Каску и жилет выдадим на месте.</li>
+          <li>Обувь закрытая, одежда по погоде.</li>
+          <li>Дети — только с взрослыми.</li>
+          <li>Без подтверждения от организаторов место не считается забронированным.</li>
+        </ul>
+      </div>
 
-      <a class="btn signup__btn"
-         href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=jueCTA2Uuke6TqJ6P8P-3ZUv5EirjthBkq00TB39VvhUME1WUEY3QTIyS0hMVEtVQ1k2SVNRVDEzVC4u"
-         target="_blank" rel="noopener">Заполнить заявку <span class="btn__arrow">→</span></a>
-      <p class="signup__note">Заявки принимаем до 14 августа. Форма откроется в новой вкладке.</p>
+      <form class="form reveal" id="signupForm" novalidate>
+        <div class="form__body">
+          <div class="form__row">
+            <div class="field">
+              <label for="f-name">Имя и фамилия <span class="req">*</span></label>
+              <input type="text" id="f-name" name="entry.1581020273" placeholder="Иван Петров" autocomplete="name" required>
+            </div>
+            <div class="field">
+              <label for="f-phone">Телефон <span class="req">*</span></label>
+              <input type="tel" id="f-phone" name="entry.360297033" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="f-point">Откуда поедете <span class="req">*</span></label>
+            <select id="f-point" name="entry.17226917" required>
+              <option value="" selected disabled>Выберите точку отправления</option>
+              <option>Шахтёрск — ЦКР, отправление 10:00</option>
+              <option>Углегорск — автовокзал, посадка 10:20</option>
+            </select>
+          </div>
+
+          <div class="form__row">
+            <div class="field">
+              <label for="f-people">Сколько человек <span class="req">*</span></label>
+              <select id="f-people" name="entry.1346512522" required>
+                <option value="" selected disabled>Включая вас</option>
+                <option>1</option><option>2</option><option>3</option>
+                <option>4</option><option>5</option><option>6 и больше</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-kids">Из них детей до 14 лет</label>
+              <select id="f-kids" name="entry.735241986">
+                <option selected>Нет детей</option>
+                <option>1</option><option>2</option><option>3</option><option>4 и больше</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" id="f-consent" value="Согласен на обработку персональных данных" name="entry.165785727" required>
+            <span>Согласен на обработку персональных данных</span>
+          </label>
+
+          <button class="btn btn--wide" type="submit" id="f-submit">Отправить заявку <span class="btn__arrow">→</span></button>
+          <p class="form__note">Заявки принимаем до 14 августа. Организаторы свяжутся с вами перед экскурсией.</p>
+        </div>
+
+        <div class="form__done">
+          <h3 class="h3">Заявка отправлена</h3>
+          <p>Мы получили вашу регистрацию и позвоним перед 22 августа, чтобы подтвердить место в группе.</p>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -196,6 +249,45 @@
   items.forEach(function (el) { io.observe(el); });
 })();
 
+/* Маска телефона */
+(function () {
+  var input = document.getElementById('f-phone');
+  if (!input) return;
+  input.addEventListener('input', function () {
+    var d = input.value.replace(/\D/g, '');
+    if (d[0] === '8') d = '7' + d.slice(1);
+    if (d[0] !== '7') d = '7' + d;
+    d = d.slice(0, 11);
+    var out = '+7';
+    if (d.length > 1) out += ' (' + d.slice(1, 4);
+    if (d.length >= 5) out += ') ' + d.slice(4, 7);
+    if (d.length >= 8) out += '-' + d.slice(7, 9);
+    if (d.length >= 10) out += '-' + d.slice(9, 11);
+    input.value = out;
+  });
+})();
+
+/* Отправка в Google Форму */
+(function () {
+  var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSc6e-o9f6hhncDjBz7xTAcuXvLlw13xvuxNiCKjzCxCUWMzfA/formResponse';
+  var form = document.getElementById('signupForm');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var btn = document.getElementById('f-submit');
+    btn.disabled = true;
+    fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: new FormData(form) })
+      .then(function () {
+        form.classList.add('is-sent');
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      })
+      .catch(function () {
+        btn.disabled = false;
+        alert('Не получилось отправить заявку. Проверьте интернет и попробуйте ещё раз.');
+      });
+  });
+})();
 </script>
 
 </body>
