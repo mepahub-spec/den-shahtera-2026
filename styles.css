@@ -287,7 +287,7 @@ section { position: relative; }
 }
 .timeline li {
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: 72px 1fr;
   gap: clamp(16px, 3vw, 40px);
   align-items: baseline;
   padding: 20px 0;
