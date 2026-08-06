@@ -50,8 +50,8 @@
     </ul>
 
     <div class="hero__cta">
-      <a class="btn" href="#form">Зарегистрироваться <span class="btn__arrow">→</span></a>
-      <p class="hero__deadline">Заявки — <b>до 14 августа</b>. В группу попадут первые 100 человек.</p>
+      <span class="btn" style="background:#3A3A3E;cursor:default">Регистрация завершена</span>
+      <p class="hero__deadline">Группа набрана — спасибо за интерес! Участникам позвоним до 19 августа.</p>
     </div>
   </div>
 </section>
@@ -147,8 +147,8 @@
     <div class="signup__grid">
       <div class="signup__intro reveal">
         <p class="eyebrow eyebrow--muted">Регистрация</p>
-        <h2 class="h2">Записаться на экскурсию</h2>
-        <p class="signup__lead">Одна заявка — на всю семью или компанию. Перед экскурсией мы позвоним и подтвердим место в группе.</p>
+        <h2 class="h2">Спасибо за интерес!</h2>
+        <p class="signup__lead">Места разобрали за несколько дней. Экскурсии на производство ВГК проводит регулярно — следите за анонсами новых наборов.</p>
 
         <ul class="notes">
           <li>Каску и жилет выдадим на месте.</li>
@@ -158,60 +158,12 @@
         </ul>
       </div>
 
-      <form class="form reveal" id="signupForm" novalidate>
-        <div class="form__body">
-          <div class="form__row">
-            <div class="field">
-              <label for="f-name">Имя и фамилия <span class="req">*</span></label>
-              <input type="text" id="f-name" name="entry.1581020273" placeholder="Иван Петров" autocomplete="name" required>
-            </div>
-            <div class="field">
-              <label for="f-phone">Телефон <span class="req">*</span></label>
-              <input type="tel" id="f-phone" name="entry.360297033" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
-            </div>
-          </div>
-
-          <div class="field">
-            <label for="f-point">Откуда поедете <span class="req">*</span></label>
-            <select id="f-point" name="entry.17226917" required>
-              <option value="" selected disabled>Выберите город</option>
-              <option>Шахтёрск — ЦКР</option>
-              <option>Углегорск — автовокзал</option>
-            </select>
-          </div>
-
-          <div class="form__row">
-            <div class="field">
-              <label for="f-people">Сколько человек <span class="req">*</span></label>
-              <select id="f-people" name="entry.1346512522" required>
-                <option value="" selected disabled>Включая вас</option>
-                <option>1</option><option>2</option><option>3</option>
-                <option>4</option><option>5</option><option>6 и больше</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-kids">Из них детей до 14 лет</label>
-              <select id="f-kids" name="entry.735241986">
-                <option selected>Нет детей</option>
-                <option>1</option><option>2</option><option>3</option><option>4 и больше</option>
-              </select>
-            </div>
-          </div>
-
-          <label class="consent">
-            <input type="checkbox" id="f-consent" value="Согласен на обработку персональных данных" name="entry.165785727" required>
-            <span>Согласен на обработку персональных данных</span>
-          </label>
-
-          <button class="btn btn--wide" type="submit" id="f-submit">Отправить заявку <span class="btn__arrow">→</span></button>
-          <p class="form__note">Заявки принимаем до 14 августа. Организаторы свяжутся с вами перед экскурсией.</p>
+      <div class="form reveal">
+        <div class="form__done" style="display:block">
+          <h3 class="h3">Регистрация завершена</h3>
+          <p>Набрано максимальное количество участников. Все, кто успел подать заявку, получат звонок от организаторов не позднее чем за три дня до экскурсии.</p>
         </div>
-
-        <div class="form__done">
-          <h3 class="h3">Заявка отправлена</h3>
-          <p>Мы получили вашу регистрацию и позвоним перед 22 августа, чтобы подтвердить место в группе.</p>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </section>
