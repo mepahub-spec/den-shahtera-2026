@@ -1,0 +1,337 @@
+<title>Капсула на Шахтёрск</title>
+<style>
+@font-face{font-family:'Conthrax';src:url(data:font/woff2;base64,{{CONTHRAX}}) format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Manrope';src:url(data:font/woff2;base64,{{MANROPE_R}}) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Manrope';src:url(data:font/woff2;base64,{{MANROPE_SB}}) format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Manrope';src:url(data:font/woff2;base64,{{MANROPE_B}}) format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --ground:#E9EAEC; --surface:#FCFCFD; --sunk:#DFE2E5;
+  --ink:#15171A; --muted:#5F646B; --line:#D0D4D8;
+  --accent:#B93A22; --accent-soft:rgba(185,58,34,.10);
+  --indigo:#31465E; --ok:#3F6B4E;
+  --shadow:0 1px 2px rgba(16,20,26,.06);
+  --display:'Conthrax','Arial Black',Impact,sans-serif;
+  --body:'Manrope',system-ui,-apple-system,Segoe UI,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#121417; --surface:#1A1D21; --sunk:#212529;
+    --ink:#E7E9EA; --muted:#98A0A8; --line:#2B3037;
+    --accent:#EE6047; --accent-soft:rgba(238,96,71,.14);
+    --indigo:#9DB4CC; --ok:#7FB08F;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#121417; --surface:#1A1D21; --sunk:#212529;
+  --ink:#E7E9EA; --muted:#98A0A8; --line:#2B3037;
+  --accent:#EE6047; --accent-soft:rgba(238,96,71,.14);
+  --indigo:#9DB4CC; --ok:#7FB08F;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--body); font-size:16px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:760px; margin:0 auto; padding:0 20px 96px}
+
+/* ---------- sticky bar ---------- */
+.bar{
+  position:sticky; top:0; z-index:10;
+  background:color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.bar__in{
+  max-width:760px; margin:0 auto; padding:10px 20px;
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.bar__name{font-family:var(--display); font-size:12px; letter-spacing:.08em; text-transform:uppercase}
+.bar__count{
+  font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums;
+  display:flex; align-items:center; gap:8px;
+}
+.meter{width:72px; height:4px; border-radius:2px; background:var(--sunk); overflow:hidden}
+.meter i{display:block; height:100%; width:0%; background:var(--accent); transition:width .25s ease}
+
+/* ---------- header ---------- */
+header.top{padding:44px 0 28px}
+.eyebrow{
+  font-family:var(--display); font-size:11px; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--accent); margin:0 0 14px;
+}
+h1{
+  font-family:var(--display); font-weight:600;
+  font-size:clamp(30px,7vw,46px); line-height:1.04; letter-spacing:-.01em;
+  margin:0 0 18px; text-wrap:balance; text-transform:uppercase;
+}
+.lead{font-size:17px; color:var(--muted); margin:0; max-width:60ch}
+
+/* ---------- sections ---------- */
+section{margin-top:44px}
+h2{
+  font-family:var(--display); font-weight:600; text-transform:uppercase;
+  font-size:15px; letter-spacing:.06em; margin:0 0 6px;
+}
+.sub{color:var(--muted); font-size:14px; margin:0 0 18px; max-width:62ch}
+
+/* ---------- size card ---------- */
+.sizecard{
+  background:var(--surface); border:1px solid var(--line); border-radius:4px;
+  padding:22px; box-shadow:var(--shadow);
+}
+.grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden}
+.cell{background:var(--surface); padding:14px 12px; text-align:center}
+.cell--hot{background:var(--accent-soft)}
+.cell b{
+  display:block; font-family:var(--display); font-size:26px; line-height:1;
+  font-variant-numeric:tabular-nums; margin-bottom:6px;
+}
+.cell--hot b{color:var(--accent)}
+.cell span{display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.cell em{display:block; font-style:normal; font-size:13px; margin-top:8px; color:var(--muted)}
+.cell--hot em{color:var(--accent); font-weight:700}
+.verdict{margin:18px 0 0; font-size:15px}
+.verdict strong{font-weight:700}
+.rules{margin:16px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px}
+.rules li{display:flex; gap:10px; font-size:14.5px; color:var(--muted)}
+.rules li::before{content:'—'; color:var(--accent); flex:none}
+.rules b{color:var(--ink); font-weight:600}
+
+/* ---------- checklist ---------- */
+.list{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden}
+.item{
+  background:var(--surface); display:flex; gap:13px; align-items:flex-start;
+  padding:14px 16px; cursor:pointer;
+}
+.item:hover{background:color-mix(in srgb, var(--surface) 92%, var(--accent) 8%)}
+.item input{
+  appearance:none; flex:none; width:19px; height:19px; margin:2px 0 0;
+  border:1.5px solid var(--muted); border-radius:3px; background:transparent;
+  cursor:pointer; position:relative;
+}
+.item input:checked{background:var(--accent); border-color:var(--accent)}
+.item input:checked::after{
+  content:''; position:absolute; left:5.5px; top:2px; width:5px; height:10px;
+  border:solid #fff; border-width:0 2px 2px 0; transform:rotate(42deg);
+}
+.item input:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.item__txt{min-width:0}
+.item__t{font-weight:600; font-size:15px; display:block}
+.item__d{color:var(--muted); font-size:13.5px; display:block; margin-top:3px}
+.item input:checked ~ .item__txt .item__t{text-decoration:line-through; color:var(--muted); text-decoration-thickness:1px}
+.tag{
+  font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; font-weight:700;
+  padding:2px 6px; border-radius:2px; margin-left:8px; white-space:nowrap;
+  background:var(--sunk); color:var(--muted); vertical-align:2px;
+}
+.tag--1{background:var(--accent); color:#fff}
+
+/* ---------- looks ---------- */
+.looks{display:grid; gap:12px}
+@media(min-width:620px){.looks{grid-template-columns:1fr 1fr}}
+.look{
+  background:var(--surface); border:1px solid var(--line); border-radius:4px;
+  padding:16px 18px; border-left:3px solid var(--indigo);
+}
+.look--field{border-left-color:var(--accent)}
+.look h3{
+  font-family:var(--display); font-size:12px; letter-spacing:.07em; text-transform:uppercase;
+  margin:0 0 9px; font-weight:600;
+}
+.look p{margin:0; font-size:14.5px}
+.look .note{margin-top:9px; font-size:13px; color:var(--muted)}
+
+/* ---------- stop ---------- */
+.stop{background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:18px 20px}
+.stop ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px}
+.stop li{font-size:14.5px; display:flex; gap:10px}
+.stop li::before{content:'✕'; color:var(--accent); font-size:12px; flex:none; margin-top:3px}
+
+/* ---------- misc ---------- */
+.plain{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:11px}
+.plain li{display:flex; gap:10px; font-size:14.5px}
+.plain li::before{content:''; flex:none; width:5px; height:5px; border-radius:50%; background:var(--indigo); margin-top:9px}
+.plain b{font-weight:600}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+.chip{
+  font-size:13px; padding:6px 11px; border:1px solid var(--line);
+  border-radius:100px; background:var(--surface); color:var(--muted);
+}
+footer{
+  margin-top:52px; padding-top:20px; border-top:1px solid var(--line);
+  font-size:13px; color:var(--muted);
+}
+footer p{margin:0 0 8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="bar">
+  <div class="bar__in">
+    <span class="bar__name">Шахтёрск · 20–24 авг</span>
+    <span class="bar__count"><span class="meter"><i id="meterFill"></i></span><span id="counter">0 / 0</span></span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Командировка · Солнцевский разрез</p>
+  <h1>Капсула на Шахтёрск</h1>
+  <p class="lead">Десять вещей, шесть комплектов, один список покупок. Отмечайте прямо в магазине — галочки сохраняются.</p>
+</header>
+
+<section>
+  <h2>Почему джинсы жмут</h2>
+  <p class="sub">Мерки 117 / 108 / 124, сверка с типовой сеткой РФ. Ответ не в размере.</p>
+  <div class="sizecard">
+    <div class="grid3">
+      <div class="cell"><b>117</b><span>Грудь</span><em>54</em></div>
+      <div class="cell cell--hot"><b>108</b><span>Талия</span><em>58</em></div>
+      <div class="cell"><b>124</b><span>Бёдра</span><em>54</em></div>
+    </div>
+    <p class="verdict">Разрыв в два размера, и весь он — в поясе. 54-й садится по бёдрам верно, но пояс рассчитан на 98 см при ваших 108. Брать 56–58 целиком нельзя: утонут бёдра и плечи. <strong>Менять нужно не размер, а тип пояса.</strong></p>
+    <ul class="rules">
+      <li><span><b>Низ — бёдра 54, пояс без размера.</b> Резинка, кулиска, эластичная вставка сзади или твил с 2–3% эластана. Жёсткий пояс не рассматриваем вообще.</span></li>
+      <li><span><b>Верх — 56 в прилегающем крое, 54 в свободном.</b></span></li>
+      <li><span><b>Талию не подчёркиваем.</b> Разница грудь−талия 9 см, акцентировать нечего. Ремни и запа́х по талии не работают.</span></li>
+      <li><span><b>Работают вертикали и плечо.</b> Длинные расстёгнутые слои, непрерывная линия сверху вниз, чёткая линия плеча в противовес бёдрам.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Взять из дома</h2>
+  <p class="sub">Половина капсулы уже есть. Это её опоры.</p>
+  <div class="list" data-list>
+    <label class="item"><input type="checkbox" id="h1"><span class="item__txt"><span class="item__t">Пиджак</span><span class="item__d">Главная вещь гардероба. Держит и встречи, и официальную часть, и ужин</span></span></label>
+    <label class="item"><input type="checkbox" id="h2"><span class="item__txt"><span class="item__t">Летние брюки на резинке</span><span class="item__d">Уже доказали, что работают. Под длинную рубашку — ваша схема</span></span></label>
+    <label class="item"><input type="checkbox" id="h3"><span class="item__txt"><span class="item__t">Джинсы — только если пояс не жмёт сидя</span><span class="item__d">Проверьте на стуле. Жмут обе пары — оставьте дома, они испортят день</span></span></label>
+    <label class="item"><input type="checkbox" id="h4"><span class="item__txt"><span class="item__t">Белые кроссовки On</span><span class="item__d">Перелёт, город, офис, ужин. На разрез — нет</span></span></label>
+    <label class="item"><input type="checkbox" id="h5"><span class="item__txt"><span class="item__t">Джерси-джоггеры — одна лучшая пара</span><span class="item__d">Отель и перелёт. Остальные потасканные — выложить</span></span></label>
+    <label class="item"><input type="checkbox" id="h6"><span class="item__txt"><span class="item__t">Чёрные шлёпки</span><span class="item__d">Только номер и душ. Не на объект и не в кадр</span></span></label>
+  </div>
+</section>
+
+<section>
+  <h2>Докупить</h2>
+  <p class="sub">Красным помечено то, без чего поездка испорчена. Остальное — если останется время.</p>
+  <div class="list" data-list>
+    <label class="item"><input type="checkbox" id="b1"><span class="item__txt"><span class="item__t">Непромокаемая куртка с капюшоном<span class="tag tag--1">1</span></span><span class="item__d">Мембрана или софтшелл, длина ниже бёдер, графит или индиго. Единственная незаменимая покупка: в августе здесь 13 дождливых дней и ветер с пролива</span></span></label>
+    <label class="item"><input type="checkbox" id="b2"><span class="item__txt"><span class="item__t">Тёмные кроссовки с протектором<span class="tag tag--1">1</span></span><span class="item__d">Закрытые, нескользящие, лучше с влагозащитой. Белые On на разрезе погибнут, а вам в них ещё ходить всю поездку</span></span></label>
+    <label class="item"><input type="checkbox" id="b3"><span class="item__txt"><span class="item__t">Длинная рубашка, молочная<span class="tag tag--1">1</span></span><span class="item__d">Свободная, ниже бёдер, плотный хлопок или тенсел. Размер 54. Ткань должна держать форму, а не липнуть</span></span></label>
+    <label class="item"><input type="checkbox" id="b4"><span class="item__txt"><span class="item__t">Джинсы индиго с эластичным поясом<span class="tag tag--1">1</span></span><span class="item__d">Прямые, высокая посадка, пояс на резинке или со вставкой сзади. Бёдра 54. Главная покупка по комфорту</span></span></label>
+    <label class="item"><input type="checkbox" id="b5"><span class="item__txt"><span class="item__t">Тонкий джемпер, меринос, графит<span class="tag tag--1">1</span></span><span class="item__d">Размер 56. При +13 с ветром футболка и пиджак не спасают, а свитер под пиджак не влезет</span></span></label>
+    <label class="item"><input type="checkbox" id="b6"><span class="item__txt"><span class="item__t">Рубашка-оверщёрт, терракота<span class="tag">2</span></span><span class="item__d">Плотная, навыпуск, размер 54. Единственный цвет в капсуле и сразу третий слой</span></span></label>
+    <label class="item"><input type="checkbox" id="b7"><span class="item__txt"><span class="item__t">Две футболки плотного хлопка<span class="tag">2</span></span><span class="item__d">Молочная и серо-бежевая, размер 56, длина закрывает бёдра. Не чёрные</span></span></label>
+    <label class="item"><input type="checkbox" id="b8"><span class="item__txt"><span class="item__t">Костюмные брюки на резинке, графит<span class="tag">2</span></span><span class="item__d">Прямые, ткань с формой — не джерси. Официальная часть без ощущения костюма</span></span></label>
+  </div>
+</section>
+
+<section>
+  <h2>Комплекты</h2>
+  <p class="sub">Каждая вещь работает минимум в трёх. Красной чертой — выход на объект.</p>
+  <div class="looks">
+    <div class="look"><h3>Перелёт</h3><p>Брюки на резинке · молочная футболка · меринос · куртка · белые On</p><p class="note">В самолёте холодно, на выходе может лить.</p></div>
+    <div class="look look--field"><h3>Разрез · 22 августа</h3><p>Графитовые брюки · серо-бежевая футболка · оверщёрт · куртка · тёмные кроссовки</p><p class="note">Волосы собрать. Каску и жилет наденут поверх — куртка не должна быть объёмной, иначе жилет не сойдётся.</p></div>
+    <div class="look"><h3>Рабочие встречи</h3><p>Джинсы индиго · молочная футболка · пиджак · белые On</p><p class="note">Самая надёжная ваша комбинация.</p></div>
+    <div class="look"><h3>Официальная часть</h3><p>Графитовые брюки · оверщёрт терракота · пиджак</p><p class="note">Акцент в кадре, тёмная база, чёткое плечо.</p></div>
+    <div class="look"><h3>Ужин</h3><p>Брюки на резинке · длинная рубашка навыпуск · пиджак</p><p class="note">Ваша схема, доведённая до вечернего вида.</p></div>
+    <div class="look"><h3>Отель</h3><p>Джоггеры · футболка · шлёпки</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>Как мерить — 30 секунд</h2>
+  <p class="sub">Бирку не смотрим, смотрим на посадку.</p>
+  <ul class="plain">
+    <li><span><b>Брюки.</b> Сесть на стул и наклониться вперёд, как в машине. Пояс не врезается и не сползает сзади. Стоя между поясом и телом проходит ладонь плашмя. Это главный тест</span></li>
+    <li><span><b>Длина брюк.</b> Прямые — до косточки, широкие — до середины подошвы. Мерить в той обуви, что поедет</span></li>
+    <li><span><b>Рубашка.</b> Поднять обе руки вверх: пройма не тянет, низ не задирается. Плечевой шов на плече или чуть ниже, но не на середине руки</span></li>
+    <li><span><b>Трикотаж.</b> Провести ладонью по животу — ткань не липнет и не обрисовывает. Липнет значит тонкая, берём другую</span></li>
+    <li><span><b>Куртка.</b> Мерить сразу поверх пиджака и джемпера. Застёгивается свободно, руки поднимаются</span></li>
+    <li><span><b>Кроссовки.</b> В том носке, что поедет, и во второй половине дня</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Не покупать</h2>
+  <div class="stop">
+    <ul>
+      <li>Чёрные футболки. Их уже избыток — на это стоит прямой запрет</li>
+      <li>Узкие джинсы и всё с жёстким поясом</li>
+      <li>Ещё джерси-джоггеры — одной свежей пары хватит</li>
+      <li>Светлый низ: на разрезе живёт один день</li>
+      <li>Тонкий облегающий трикотаж как базу</li>
+      <li>Каблуки и открытую обувь для объекта</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Безопасность на объекте</h2>
+  <p class="sub">Каску и жилет выдадут на КПП-1. Остальное на вас.</p>
+  <ul class="plain">
+    <li><span>Закрытая обувь с фиксированной пяткой — в шлёпках на объект не пропустят</span></li>
+    <li><span>Волосы собрать</span></li>
+    <li><span>Шарф и платок снять перед выходом из вахтовки: свободные концы рядом с техникой опасны</span></li>
+    <li><span>Одежда, которую не жалко — угольная пыль въедается</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2>В чемодан</h2>
+  <div class="chips">
+    <span class="chip">Дождевик-пончо</span><span class="chip">Запасные носки</span><span class="chip">Влажные салфетки</span><span class="chip">Карандаш от пятен</span><span class="chip">Пластырь</span><span class="chip">Powerbank</span><span class="chip">Очки от солнца и пыли</span>
+  </div>
+</section>
+
+<section>
+  <h2>Где искать за один день</h2>
+  <p class="sub">Что критично по посадке — заказать онлайн с примеркой сразу в двух размерах, 54 и 56. Что нельзя не померить — куртку и кроссовки — взять одним заходом в ТЦ.</p>
+  <ul class="plain">
+    <li><span><b>Плюс-сайз, сетка до 56:</b> Lalis, Noble, Svetlanova, Amour</span></li>
+    <li><span><b>Массмаркет с 54:</b> O'stin, Zolla, Befree, Gloria Jeans</span></li>
+    <li><span><b>Куртка и обувь:</b> Спортмастер, Finn Flare</span></li>
+  </ul>
+</section>
+
+<footer>
+  <p>Погода взята по климатической норме августа для Шахтёрска: около +17 днём, +13 ночью, 13 дождливых дней за месяц, ветер с Татарского пролива. Фактический прогноз проверить за два дня до вылета.</p>
+  <p>Даты 20–24 августа — допущение вокруг экскурсии 22-го. Рост и размер обуви не учтены: длину брюк и обувь проверяйте по критериям примерки.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('[data-list] input[type=checkbox]'));
+  var counter = document.getElementById('counter');
+  var fill = document.getElementById('meterFill');
+  var KEY = 'shahtersk-capsule-v1';
+
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
+
+  function render(){
+    var done = boxes.filter(function(b){ return b.checked; }).length;
+    counter.textContent = done + ' / ' + boxes.length;
+    fill.style.width = (boxes.length ? done / boxes.length * 100 : 0) + '%';
+  }
+
+  boxes.forEach(function(b){
+    if (saved[b.id]) b.checked = true;
+    b.addEventListener('change', function(){
+      saved[b.id] = b.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
