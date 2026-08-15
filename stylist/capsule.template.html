@@ -8,8 +8,8 @@
 :root{
   --ground:#E9EAEC; --surface:#FCFCFD; --sunk:#DFE2E5;
   --ink:#15171A; --muted:#5F646B; --line:#D0D4D8;
-  --accent:#B93A22; --accent-soft:rgba(185,58,34,.10);
-  --indigo:#31465E; --ok:#3F6B4E;
+  --accent:#8E2438; --accent-soft:rgba(142,36,56,.10);
+  --indigo:#5C5348; --ok:#3F6B4E;
   --shadow:0 1px 2px rgba(16,20,26,.06);
   --display:'Conthrax','Arial Black',Impact,sans-serif;
   --body:'Manrope',system-ui,-apple-system,Segoe UI,sans-serif;
@@ -18,16 +18,16 @@
   :root:not([data-theme="light"]){
     --ground:#121417; --surface:#1A1D21; --sunk:#212529;
     --ink:#E7E9EA; --muted:#98A0A8; --line:#2B3037;
-    --accent:#EE6047; --accent-soft:rgba(238,96,71,.14);
-    --indigo:#9DB4CC; --ok:#7FB08F;
+    --accent:#D9647A; --accent-soft:rgba(217,100,122,.14);
+    --indigo:#B3A490; --ok:#7FB08F;
     --shadow:0 1px 2px rgba(0,0,0,.4);
   }
 }
 :root[data-theme="dark"]{
   --ground:#121417; --surface:#1A1D21; --sunk:#212529;
   --ink:#E7E9EA; --muted:#98A0A8; --line:#2B3037;
-  --accent:#EE6047; --accent-soft:rgba(238,96,71,.14);
-  --indigo:#9DB4CC; --ok:#7FB08F;
+  --accent:#D9647A; --accent-soft:rgba(217,100,122,.14);
+  --indigo:#B3A490; --ok:#7FB08F;
   --shadow:0 1px 2px rgba(0,0,0,.4);
 }
 
@@ -37,157 +37,93 @@ body{
   font-family:var(--body); font-size:16px; line-height:1.55;
   -webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:760px; margin:0 auto; padding:0 20px 96px}
+.wrap{max-width:780px; margin:0 auto; padding:0 20px 96px}
 
-/* ---------- sticky bar ---------- */
 .bar{
   position:sticky; top:0; z-index:10;
   background:color-mix(in srgb, var(--ground) 88%, transparent);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(10px); border-bottom:1px solid var(--line);
 }
 .bar__in{
-  max-width:760px; margin:0 auto; padding:10px 20px;
+  max-width:780px; margin:0 auto; padding:10px 20px;
   display:flex; align-items:center; justify-content:space-between; gap:16px;
 }
 .bar__name{font-family:var(--display); font-size:12px; letter-spacing:.08em; text-transform:uppercase}
-.bar__count{
-  font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums;
-  display:flex; align-items:center; gap:8px;
-}
+.bar__count{font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums; display:flex; align-items:center; gap:8px}
 .meter{width:72px; height:4px; border-radius:2px; background:var(--sunk); overflow:hidden}
 .meter i{display:block; height:100%; width:0%; background:var(--accent); transition:width .25s ease}
 
-/* ---------- header ---------- */
 header.top{padding:44px 0 28px}
-.eyebrow{
-  font-family:var(--display); font-size:11px; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--accent); margin:0 0 14px;
-}
-h1{
-  font-family:var(--display); font-weight:600;
-  font-size:clamp(30px,7vw,46px); line-height:1.04; letter-spacing:-.01em;
-  margin:0 0 18px; text-wrap:balance; text-transform:uppercase;
-}
+.eyebrow{font-family:var(--display); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin:0 0 14px}
+h1{font-family:var(--display); font-weight:600; font-size:clamp(30px,7vw,46px); line-height:1.04; letter-spacing:-.01em; margin:0 0 18px; text-wrap:balance; text-transform:uppercase}
 .lead{font-size:17px; color:var(--muted); margin:0; max-width:60ch}
 
-/* ---------- sections ---------- */
-section{margin-top:44px}
-h2{
-  font-family:var(--display); font-weight:600; text-transform:uppercase;
-  font-size:15px; letter-spacing:.06em; margin:0 0 6px;
-}
-.sub{color:var(--muted); font-size:14px; margin:0 0 18px; max-width:62ch}
+section{margin-top:48px}
+h2{font-family:var(--display); font-weight:600; text-transform:uppercase; font-size:15px; letter-spacing:.06em; margin:0 0 6px}
+.sub{color:var(--muted); font-size:14px; margin:0 0 18px; max-width:64ch}
 
-/* ---------- size card ---------- */
-.sizecard{
-  background:var(--surface); border:1px solid var(--line); border-radius:4px;
-  padding:22px; box-shadow:var(--shadow);
-}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:22px; box-shadow:var(--shadow)}
+.card p{margin:0 0 13px; font-size:15px}
+.card p:last-child{margin-bottom:0}
+
 .grid3{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden}
 .cell{background:var(--surface); padding:14px 12px; text-align:center}
 .cell--hot{background:var(--accent-soft)}
-.cell b{
-  display:block; font-family:var(--display); font-size:26px; line-height:1;
-  font-variant-numeric:tabular-nums; margin-bottom:6px;
-}
+.cell b{display:block; font-family:var(--display); font-size:26px; line-height:1; font-variant-numeric:tabular-nums; margin-bottom:6px}
 .cell--hot b{color:var(--accent)}
 .cell span{display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
 .cell em{display:block; font-style:normal; font-size:13px; margin-top:8px; color:var(--muted)}
 .cell--hot em{color:var(--accent); font-weight:700}
-.verdict{margin:18px 0 0; font-size:15px}
-.verdict strong{font-weight:700}
-.rules{margin:16px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px}
-.rules li{display:flex; gap:10px; font-size:14.5px; color:var(--muted)}
-.rules li::before{content:'—'; color:var(--accent); flex:none}
-.rules b{color:var(--ink); font-weight:600}
 
-/* ---------- checklist ---------- */
 .list{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden}
-.item{
-  background:var(--surface); display:flex; gap:13px; align-items:flex-start;
-  padding:14px 16px; cursor:pointer;
-}
+.item{background:var(--surface); display:flex; gap:13px; align-items:flex-start; padding:14px 16px; cursor:pointer}
 .item:hover{background:color-mix(in srgb, var(--surface) 92%, var(--accent) 8%)}
-.item input{
-  appearance:none; flex:none; width:19px; height:19px; margin:2px 0 0;
-  border:1.5px solid var(--muted); border-radius:3px; background:transparent;
-  cursor:pointer; position:relative;
-}
+.item input{appearance:none; flex:none; width:19px; height:19px; margin:2px 0 0; border:1.5px solid var(--muted); border-radius:3px; background:transparent; cursor:pointer; position:relative}
 .item input:checked{background:var(--accent); border-color:var(--accent)}
-.item input:checked::after{
-  content:''; position:absolute; left:5.5px; top:2px; width:5px; height:10px;
-  border:solid #fff; border-width:0 2px 2px 0; transform:rotate(42deg);
-}
+.item input:checked::after{content:''; position:absolute; left:5.5px; top:2px; width:5px; height:10px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(42deg)}
 .item input:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 .item__txt{min-width:0}
 .item__t{font-weight:600; font-size:15px; display:block}
 .item__d{color:var(--muted); font-size:13.5px; display:block; margin-top:3px}
 .item input:checked ~ .item__txt .item__t{text-decoration:line-through; color:var(--muted); text-decoration-thickness:1px}
-.tag{
-  font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; font-weight:700;
-  padding:2px 6px; border-radius:2px; margin-left:8px; white-space:nowrap;
-  background:var(--sunk); color:var(--muted); vertical-align:2px;
-}
+.tag{font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; font-weight:700; padding:2px 6px; border-radius:2px; margin-left:8px; white-space:nowrap; background:var(--sunk); color:var(--muted); vertical-align:2px}
 .tag--1{background:var(--accent); color:#fff}
 
-/* ---------- looks ---------- */
-.looks{display:grid; gap:12px}
-@media(min-width:620px){.looks{grid-template-columns:1fr 1fr}}
-.look{
-  background:var(--surface); border:1px solid var(--line); border-radius:4px;
-  padding:16px 18px; border-left:3px solid var(--indigo);
-}
-.look--field{border-left-color:var(--accent)}
-.look h3{
-  font-family:var(--display); font-size:12px; letter-spacing:.07em; text-transform:uppercase;
-  margin:0 0 9px; font-weight:600;
-}
-.look p{margin:0; font-size:14.5px}
-.look .note{margin-top:9px; font-size:13px; color:var(--muted)}
+.modes{display:grid; gap:12px}
+@media(min-width:660px){.modes{grid-template-columns:1fr 1fr}}
+.mode{background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:17px 19px; border-left:3px solid var(--indigo)}
+.mode--gala{border-left-color:var(--accent)}
+.mode h3{font-family:var(--display); font-size:12px; letter-spacing:.07em; text-transform:uppercase; margin:0 0 4px; font-weight:600}
+.mode .when{font-size:12px; color:var(--muted); margin:0 0 10px; text-transform:uppercase; letter-spacing:.05em}
+.mode p.f{margin:0; font-size:14.5px; font-weight:600}
+.mode .note{margin:9px 0 0; font-size:13px; color:var(--muted)}
 
-/* ---------- stop ---------- */
 .stop{background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:18px 20px}
 .stop ul{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px}
 .stop li{font-size:14.5px; display:flex; gap:10px}
 .stop li::before{content:'✕'; color:var(--accent); font-size:12px; flex:none; margin-top:3px}
 
-/* ---------- rotation table ---------- */
 .tablewrap{overflow-x:auto; border:1px solid var(--line); border-radius:4px; background:var(--surface)}
-table.rot{border-collapse:collapse; width:100%; min-width:560px; font-size:14px}
-table.rot th{
-  text-align:left; font-family:var(--display); font-weight:600; font-size:10.5px;
-  letter-spacing:.08em; text-transform:uppercase; color:var(--muted);
-  padding:11px 14px; border-bottom:1px solid var(--line); white-space:nowrap;
-}
+table.rot{border-collapse:collapse; width:100%; min-width:520px; font-size:14px}
+table.rot th{text-align:left; font-family:var(--display); font-weight:600; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); padding:11px 14px; border-bottom:1px solid var(--line); white-space:nowrap}
 table.rot td{padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top}
 table.rot tr:last-child td{border-bottom:0}
-table.rot td.day{font-variant-numeric:tabular-nums; font-weight:600; white-space:nowrap}
-table.rot tr.mark td{background:var(--accent-soft)}
-table.rot tr.mark td.day{color:var(--accent)}
-.rot small{display:block; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); font-weight:400}
+table.rot td.k{font-weight:600; white-space:nowrap}
 
-/* ---------- misc ---------- */
 .plain{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:11px}
 .plain li{display:flex; gap:10px; font-size:14.5px}
 .plain li::before{content:''; flex:none; width:5px; height:5px; border-radius:50%; background:var(--indigo); margin-top:9px}
 .plain b{font-weight:600}
 .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
-.chip{
-  font-size:13px; padding:6px 11px; border:1px solid var(--line);
-  border-radius:100px; background:var(--surface); color:var(--muted);
-}
-footer{
-  margin-top:52px; padding-top:20px; border-top:1px solid var(--line);
-  font-size:13px; color:var(--muted);
-}
+.chip{font-size:13px; padding:6px 11px; border:1px solid var(--line); border-radius:100px; background:var(--surface); color:var(--muted)}
+footer{margin-top:56px; padding-top:20px; border-top:1px solid var(--line); font-size:13px; color:var(--muted)}
 footer p{margin:0 0 8px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 
 <div class="bar">
   <div class="bar__in">
-    <span class="bar__name">Шахтёрск · 20–24 авг</span>
+    <span class="bar__name">17 авг — 1 сен · Шахтёрск</span>
     <span class="bar__count"><span class="meter"><i id="meterFill"></i></span><span id="counter">0 / 0</span></span>
   </div>
 </div>
@@ -195,265 +131,132 @@ footer p{margin:0 0 8px}
 <div class="wrap">
 
 <header class="top">
-  <p class="eyebrow">Две недели · Солнцевский разрез</p>
+  <p class="eyebrow">Жара 28–30° · 16 дней · вся компания на месте</p>
   <h1>Капсула на Шахтёрск</h1>
-  <p class="lead">Банкет — один вечер, разрез — один день, а двенадцать дней вы просто ходите и работаете. Именно это здесь и закрыто. Отмечайте прямо в магазине — галочки сохраняются.</p>
+  <p class="lead">Четыре режима одежды, пять покупок, одно дело в ателье. Всё остальное у вас уже есть.</p>
 </header>
 
 <section>
-  <h2>Почему джинсы жмут</h2>
-  <p class="sub">Мерки 117 / 108 / 124, сверка с типовой сеткой РФ. Ответ не в размере.</p>
-  <div class="sizecard">
+  <h2>Конструкция</h2>
+  <p class="sub">Шесть правил, из которых следует всё остальное.</p>
+  <div class="card">
     <div class="grid3">
       <div class="cell"><b>117</b><span>Грудь</span><em>54</em></div>
       <div class="cell cell--hot"><b>108</b><span>Талия</span><em>58</em></div>
       <div class="cell"><b>124</b><span>Бёдра</span><em>54</em></div>
     </div>
-    <p class="verdict">Разрыв в два размера, и весь он — в поясе. 54-й садится по бёдрам верно, но пояс рассчитан на 98 см при ваших 108. Брать 56–58 целиком нельзя: утонут бёдра и плечи. <strong>Менять нужно не размер, а тип пояса.</strong></p>
-    <ul class="rules">
-      <li><span><b>Низ — бёдра 54, пояс без размера.</b> Резинка, кулиска, эластичная вставка сзади или твил с 2–3% эластана. Жёсткий пояс не рассматриваем вообще.</span></li>
-      <li><span><b>Верх — 56 в прилегающем крое, 54 в свободном.</b></span></li>
-      <li><span><b>Талию не подчёркиваем.</b> Разница грудь−талия 9 см, акцентировать нечего. Ремни и запа́х по талии не работают.</span></li>
-      <li><span><b>Работают вертикали и плечо.</b> Плечи мягкие и покатые, узкие относительно бёдер, и уравновешивать низ нечем. Раз пиджака не будет — плечо строит объёмный рукав. Мягкий верх без формы роняет силуэт вниз.</span></li>
-    </ul>
+    <p style="margin-top:18px"><b>Пояс без размера.</b> Разрыв в два размера весь в талии. Резинка, кулиска или свободный крой — жёсткий пояс не рассматриваем. Джинсы с тугим поясом носим с рубашкой навыпуск и расстёгнутой верхней пуговицей.</p>
+    <p><b>Талию не подчёркиваем.</b> Разница грудь−талия 9 см — акцентировать нечего. Работают вертикали: длинные расстёгнутые слои, непрерывная линия сверху вниз.</p>
+    <p><b>Рукав длинный или до локтя.</b> Верх руки полный: короткий рукав на бицепсе и майка соло — нет. Майки только как поддёвка под тонкую рубашку.</p>
+    <p><b>Брюки полной длины, не сужаются к низу.</b> Икры объёмные. Исключение — укороченные со стрелкой под каблук или платформу: стрелка даёт вертикаль, каблук возвращает сантиметры.</p>
+    <p><b>Слой заканчивается ниже бёдер, но выше колена на ладонь.</b> Рост 165 — длиннее нельзя, короче не перекрывает широкую точку.</p>
+    <p><b>Под слой идёт простое, вещь с деталью носится одна.</b> Драпировка или асимметрия под жилетом превращается в мешанину.</p>
   </div>
 </section>
 
 <section>
-  <h2>Приоритет ноль</h2>
-  <p class="sub">То, что даёт больше, чем весь список покупок вместе взятый.</p>
-  <div class="stop">
-    <p style="margin:0 0 12px;font-size:15px"><b>Поддерживающий бюстгальтер по размеру.</b> Грудь полная и посажена низко. Пока точка груди внизу, расстояние между грудью и талией схлопнуто: рубашка ложится на грудь как на полку, пиджак не сходится, торс читается коротким и сплошным. Ни одна вещь из списка не сядет так, как задумано.</p>
-    <p style="margin:0;font-size:14.5px;color:var(--muted)">Подъём груди создаёт вертикаль — и капсула начинает работать. Идти на примерку с консультантом: вероятен меньший пояс и бо́льшая чашка, чем носится сейчас. Час времени.</p>
-  </div>
-</section>
-
-<section>
-  <h2>Где была дыра</h2>
-  <p class="sub">Две недели, а не четыре дня. Это переворачивает задачу.</p>
-  <div class="sizecard">
-    <p style="margin:0 0 14px;font-size:15px">Низ у вас закрыт: четыре рабочих варианта плюс джоггеры в отель. А верхов всего четыре — белая футболка, две чёрные, серый лонгслив и чёрная рубашка, которая уже надоела. <b>Четыре верха на двенадцать рабочих дней — вот где дыра.</b></p>
-    <p style="margin:0;font-size:14.5px;color:var(--muted)">Поэтому покупаем верх, а не низ. И покупок стало пять вместо трёх — не потому, что я передумала, а потому что поездка выросла втрое.</p>
-  </div>
-</section>
-
-<section>
-  <h2>Пиджак — нет</h2>
-  <p class="sub">Вопрос возвращается, ответ прежний.</p>
-  <div class="stop">
-    <ul>
-      <li>Прошлый куплен дорого и надет один раз. Сценарий повторится — вы сами его описали</li>
-      <li>Банкет уже закрыт: блуза плюс красные мюли</li>
-      <li>На двенадцать casual-дней пиджак бесполезен. Вы в нём не ходите — и в командировке не будете</li>
-    </ul>
-    <p style="margin:14px 0 0;font-size:14.5px">Хочется структуры — берите <b>рубашку-жакет из плотной ткани.</b> Та же работа: чёткое плечо, третий слой, собранный вид. Но носится как рубашка, а не как парадная вещь, и поэтому её реально надевают.</p>
-  </div>
-</section>
-
-<section>
-  <h2>Укороченные брюки — я была категорична зря</h2>
-  <p class="sub">Ваши чёрные классические опровергают моё правило, и правильно делают.</p>
-  <div class="sizecard">
-    <p style="margin:0 0 14px;font-size:15px"><b>Укороченные работают, когда есть стрелка и каблук.</b> Стрелка даёт непрерывную вертикаль, каблук или платформа поднимают ногу и компенсируют потерянные сантиметры. Поэтому связка «чёрные классические плюс Premiata» у вас и работает.</p>
-    <p style="margin:0;font-size:14.5px;color:var(--muted)">Правило полной длины остаётся только для широких мягких брюк без стрелки — там укороченный край режет ногу ровно на икре, и это ничем не спасти.</p>
-  </div>
-</section>
-
-<section>
-  <h2>Две бесплатные поправки</h2>
-  <ul class="plain">
-    <li><span><b>Джинсы придавливают</b> — рубашка навыпуск перекрывает линию пояса. И под ней расстегните верхнюю пуговицу: сидеть станет заметно легче, снаружи этого никто не увидит</span></li>
-    <li><span><b>Чёрная рубашка надоела</b> как самостоятельный верх с полосатыми брюками. Наденьте её расстёгнутой поверх белой футболки, как лёгкий слой — это другой образ, и он ничего не стоит</span></li>
-  </ul>
-</section>
-
-<section>
-  <h2>Банкет без пиджака</h2>
-  <p class="sub">Пиджак был структурой, нарядностью и третьим слоем сразу. Убираем — и задачи расходятся. Дорогая вещь для этого не нужна.</p>
-  <div class="sizecard">
-    <p style="margin:0 0 14px;font-size:15px"><b>Нарядность даёт ткань и рукав, а не жакет.</b> Блуза из плотного сатина, купро или вискозы с весом — матовый блеск уже читается как вечерний. Добавьте объём в рукаве: мягкий фонарик, реглан со сборкой, широкий рукав на манжете. Он сделает ровно то, что делал пиджак — <b>построит плечо, которого нет.</b> Плечи покатые и узкие относительно бёдер, и рукав с объёмом уравновешивает низ не хуже жакетного плеча, а весит и мнётся втрое меньше.</p>
-    <p style="margin:0 0 14px;font-size:15px"><b>А цвет уже куплен.</b> Красные атласные мюли — готовый акцент всего образа. Значит блузу берём спокойную и глубокую: чернильно-синюю или графитовую. Вторая яркая точка не нужна — один акцент, и он внизу, это самый спокойный способ быть нарядной.</p>
-    <div class="chips">
-      <span class="chip">Классические брюки — есть</span><span class="chip">Нарядная блуза — купить</span><span class="chip">Красные мюли — есть</span><span class="chip">Серьги — есть</span>
+  <h2>Четыре режима</h2>
+  <p class="sub">Вся поездка раскладывается на них. Внутри режима вещи взаимозаменяемы.</p>
+  <div class="modes">
+    <div class="mode">
+      <h3>Поле</h3>
+      <p class="when">Большинство дней · праздник · склад · разрез</p>
+      <p class="f">Джоггеры или тауп · простая футболка или лонгслив · чёрный жилет нараспашку · On</p>
+      <p class="note">Жилет без рукавов — в жару он работает лучше жакета: даёт одетость и не греет. Светлый верх, тёмные вертикали по бокам. На разрезе поверх наденут спецодежду.</p>
     </div>
-    <p style="margin:14px 0 0;font-size:14.5px;color:var(--muted)">Одна покупка вместо пиджака, три вещи из четырёх уже дома. Не будет банкета — блуза не пропадает: с теми же брюками и кроссовками идёт на ужин и на встречу.</p>
+    <div class="mode">
+      <h3>Город</h3>
+      <p class="when">Офис · встречи · когда надо выглядеть</p>
+      <p class="f">Тауп или серые джинсы · ВЕТРЫ соло или белая рубашка навыпуск · Premiata</p>
+      <p class="note">ВЕТРЫ носится без слоёв — драпировка и асимметричный низ работают только соло. Платформа Premiata добавляет роста.</p>
+    </div>
+    <div class="mode">
+      <h3>Вечер</h3>
+      <p class="when">Ужин с коллегами · вы всё время на людях</p>
+      <p class="f">Полосатые · белый верх · шлёпки или красные мюли. Либо серые джинсы · утёнок · кроссовки</p>
+      <p class="note">Полосатые только с плоской или каблучной обувью, не с кроссовками. Утёнок только с прямым низом: гипероверсайз плюс джоггеры даст объём на объём.</p>
+    </div>
+    <div class="mode mode--gala">
+      <h3>Тот самый вечер</h3>
+      <p class="when">Генеральный · вся компания · один раз</p>
+      <p class="f">Ушитые чёрные классические · бордовый жакет · нюдовые лодочки · серьги</p>
+      <p class="note">Красные мюли к бордо не идут, два близких красных спорят. Жакет носите и поверх джерси — так он выйдет из категории парадного.</p>
+    </div>
   </div>
 </section>
 
 <section>
-  <h2>Белый бывает разный</h2>
-  <p class="sub">Вы правы: молочная рубашка к полосатым брюкам не подойдёт. Это меняет всю палитру.</p>
-  <div class="sizecard">
-    <p style="margin:0 0 14px;font-size:15px">Ваши полосатые брюки и базовая футболка — <b>холодный, оптический белый.</b> Молочный, экрю и слоновая кость — тёплые. Два разных белых в одном образе читаются как несвежесть: кажется, что одну вещь застирали.</p>
-    <p style="margin:0 0 14px;font-size:15px">Значит рубашку, которую носят с полосатыми брюками, берём <b>в том же холодном тоне</b> — и тогда она работает и с ними тон в тон, и с обоими джинсами.</p>
-    <p style="margin:0;font-size:14.5px;color:var(--muted)">Поправка после фотографий обуви: запрет на всё тёплое был слишком широким. Вся ваша обувь тёплая — кроссовки кремовые, лодочки нюдовые, мюли алые. Правило одного белого действует <b>на стыке верха и низа</b>, где вещи соприкасаются. Обувь отделена расстоянием и работает как нейтральная земля: кремовые кроссовки под холодно-белым верхом даже смягчают его. Тёплое в обуви и аксессуарах разрешено.</p>
-  </div>
-</section>
-
-<section>
-  <h2>Свободный деним — ваша посадка</h2>
-  <p class="sub">Те серые джинсы на размер-два больше, в которых «болталось, и мне это нравилось».</p>
-  <div class="sizecard">
-    <p style="margin:0 0 14px;font-size:15px">Это ответ на всю историю с поясом: <b>вам идёт свободный деним, а не подобранный по фигуре.</b> Свободная посадка снимает проблему талии 108 без всяких эластичных вставок — пояс просто перестаёт участвовать.</p>
-    <p style="margin:0;font-size:14.5px;color:var(--muted)">Обе имеющиеся пары по фото хорошие: прямые, полной длины, к низу не сужаются. Жмёт пояс — носить с рубашкой навыпуск, она перекрывает эту линию. А широкий деним на размер-два больше — покупка для жизни, не для этой поездки.</p>
-  </div>
-</section>
-
-<section>
-  <h2>Длина и линия</h2>
-  <p class="sub">Икры объёмные, короткое не носится. Строим сплошную вертикаль сверху донизу.</p>
-  <ul class="plain">
-    <li><span><b>Брюки полной длины</b> — до подъёма стопы, почти до пола. Укороченные, подкатанные и зауженные к низу не берём: сужение к голени подчёркивает икру</span></li>
-    <li><span><b>Линия от бедра идёт ровно вниз</b>, штанина не сужается. Прямой или слегка широкий крой</span></li>
-    <li><span><b>Рукав</b> длинный или 3/4, закатанный до середины предплечья — предплечье тоньше плеча, это работает. Короткий, обрывающийся на самой полной части руки, — нет</span></li>
-    <li><span><b>Ворот</b> расстёгнут на две-три пуговицы, вырез V. Плотный круглый ворот у горла — нет</span></li>
-    <li><span><b>Длинный слой</b> заканчивается ниже самой широкой точки: середина бедра и ниже. Слой, обрывающийся на бедре, подчёркивает ровно это место</span></li>
-    <li><span><b>Пояс</b> широкий и мягкий, сидит мимо самой полной точки живота. Узкая резинка по центру объёма режет</span></li>
-  </ul>
-</section>
-
-<section>
-  <h2>Обувь — вся своя</h2>
-  <p class="sub">Не покупаем ничего. Обувь у вас сильнее, чем одежда — банкет она закрывает целиком.</p>
-  <ul class="plain">
-    <li><span><b>Красные атласные мюли</b> — банкет. Готовый акцент всего образа. Под брюки полной длины видны только носком, и этого достаточно</span></li>
-    <li><span><b>Нюдовые лодочки</b> — банкет строже и официальная часть. Под брюки в пол телесный лак сливается с ногой и удлиняет силуэт</span></li>
-    <li><span><b>Premiata</b> — город и офис. Кожа выглядит дороже спортивных, с полосатыми брюками работает лучше, чем On</span></li>
-    <li><span><b>On Cloudnova</b> — аэропорт, перелёт, много ходить</span></li>
-    <li><span><b>Шлёпки</b> — номер. На разрезе выдают спецобувь</span></li>
-  </ul>
-</section>
-
-<section>
-  <h2>Взять из дома</h2>
-  <p class="sub">Почти вся капсула уже есть. Это её опоры.</p>
-  <div class="list" data-list>
-    <label class="item"><input type="checkbox" id="h1"><span class="item__txt"><span class="item__t">Серые джинсы</span><span class="item__d">Прямые, полной длины, к низу не сужаются. Аэропорт и город</span></span></label>
-    <label class="item"><input type="checkbox" id="h2"><span class="item__txt"><span class="item__t">Синие джинсы индиго</span><span class="item__d">Пара к серым. Разрез под спецодежду и ужин</span></span></label>
-    <label class="item"><input type="checkbox" id="h3"><span class="item__txt"><span class="item__t">Полосатые брюки на резинке</span><span class="item__d">Лучшая вещь по посадке из всего гардероба. Едут обязательно</span></span></label>
-    <label class="item"><input type="checkbox" id="h4"><span class="item__txt"><span class="item__t">Чёрные классические укороченные</span><span class="item__d">Со стрелкой, под Premiata и под каблук. Основа банкетного образа</span></span></label>
-    <label class="item"><input type="checkbox" id="h5"><span class="item__txt"><span class="item__t">Белая футболка и две чёрные</span><span class="item__d">Белая — в город, чёрные — под спецодежду и под слои</span></span></label>
-    <label class="item"><input type="checkbox" id="h6"><span class="item__txt"><span class="item__t">Серый лонгслив и чёрная рубашка</span><span class="item__d">Рубашку берём не как верх, а как расстёгнутый слой поверх футболки — тогда она не надоевшая</span></span></label>
-    <label class="item"><input type="checkbox" id="h9"><span class="item__txt"><span class="item__t">Чёрная куртка</span><span class="item__d">Своя, обычная. Ничего непромокаемого покупать не нужно</span></span></label>
-    <label class="item"><input type="checkbox" id="h7"><span class="item__txt"><span class="item__t">Обувь: красные мюли, нюдовые лодочки, Premiata, On, шлёпки</span><span class="item__d">Ничего не покупаем. На разрезе выдают спецобувь</span></span></label>
-    <label class="item"><input type="checkbox" id="h8"><span class="item__txt"><span class="item__t">Серьги и одна пара джоггеров</span><span class="item__d">Нарядность банкета держится на туфлях и серьгах. Джоггеры — отель</span></span></label>
-  </div>
-</section>
-
-<section>
-  <h2>Докупить</h2>
-  <p class="sub">Только верх. Брюки, обувь и куртка сняты окончательно — всё это есть.</p>
-  <div class="list" data-list>
-    <label class="item"><input type="checkbox" id="b0"><span class="item__txt"><span class="item__t">Бюстгальтер по размеру, 2 шт<span class="tag tag--1">0</span></span><span class="item__d">Примерка с консультантом. Поднятая точка груди — условие, при котором работает всё остальное</span></span></label>
-    <label class="item"><input type="checkbox" id="b2"><span class="item__txt"><span class="item__t">Белая рубашка навыпуск<span class="tag tag--1">1</span></span><span class="item__d">Главная рабочая вещь на двенадцать дней и прикрытие для пояса джинсов. Холодный белый в тон футболке и полосатым брюкам. Свободная, до середины бедра и ниже, рукав длинный под закатку. Плотный хлопок или тенсель, размер 54</span></span></label>
-    <label class="item"><input type="checkbox" id="b4"><span class="item__txt"><span class="item__t">Вторая рубашка навыпуск<span class="tag tag--1">1</span></span><span class="item__d">Одной рубашки на две недели мало. Цвет или неяркий узор — только не чёрная. Тот же крой и длина, размер 54</span></span></label>
-    <label class="item"><input type="checkbox" id="b5"><span class="item__txt"><span class="item__t">Футболка и лонгслив, не чёрные<span class="tag tag--1">1</span></span><span class="item__d">Контактный слой, стирается чаще всего. Плотный хлопок, длина закрывает бёдра, размер 56</span></span></label>
-    <label class="item"><input type="checkbox" id="b3"><span class="item__txt"><span class="item__t">Длинный кардиган<span class="tag tag--1">1</span></span><span class="item__d">Единственный тёплый слой: лонгслив хлопковый, а на смотровой ветер. Тонкая шерсть или меринос, ниже середины бедра, без пояса. Серый или графит, размер 54</span></span></label>
-    <label class="item"><input type="checkbox" id="b1"><span class="item__txt"><span class="item__t">Нарядная блуза с объёмным рукавом<span class="tag tag--1">1</span></span><span class="item__d">Банкет. Рукав строит плечо вместо пиджака. Плотный сатин, купро или вискоза с весом, вырез V, навыпуск ниже бёдер. Чернильно-синий или графит — акцентом работают красные мюли. Размер 54</span></span></label>
-    <label class="item"><input type="checkbox" id="b9"><span class="item__txt"><span class="item__t">Рубашка-жакет из плотной ткани<span class="tag">2</span></span><span class="item__d">Вместо идеи с пиджаком: то же плечо и тот же третий слой, но носится как рубашка — и поэтому реально надевается</span></span></label>
-  </div>
-</section>
-
-<section>
-  <h2>Комплекты</h2>
-  <p class="sub">Ни одна вещь не повторяется чаще трёх раз за две недели, и ни один день не выглядит как предыдущий.</p>
+  <h2>Гардероб</h2>
+  <p class="sub">Что чем работает.</p>
   <div class="tablewrap">
     <table class="rot">
-      <thead><tr><th>День</th><th>Низ</th><th>Верх</th><th>Обувь</th></tr></thead>
       <tbody>
-        <tr><td class="day">1 <small>перелёт</small></td><td>Серые джинсы</td><td>Белая футболка + серый лонгслив</td><td>On</td></tr>
-        <tr><td class="day">2</td><td>Чёрные классические</td><td>Белая рубашка навыпуск</td><td>Premiata</td></tr>
-        <tr><td class="day">3</td><td>Полосатые</td><td>Вторая рубашка</td><td>Premiata</td></tr>
-        <tr><td class="day">4</td><td>Синие джинсы</td><td>Новая футболка + кардиган</td><td>On</td></tr>
-        <tr><td class="day">5</td><td>Чёрные классические</td><td>Чёрная футболка + чёрная рубашка расстёгнутой</td><td>Premiata</td></tr>
-        <tr><td class="day">6</td><td>Серые джинсы</td><td>Вторая рубашка навыпуск</td><td>On</td></tr>
-        <tr class="mark"><td class="day">7 <small>разрез</small></td><td>Синие джинсы</td><td>Чёрная футболка + лонгслив, всё под спецодежду</td><td>Выдают</td></tr>
-        <tr><td class="day">8</td><td>Полосатые</td><td>Белая футболка + кардиган</td><td>Premiata</td></tr>
-        <tr><td class="day">9</td><td>Синие джинсы</td><td>Белая рубашка навыпуск</td><td>Premiata</td></tr>
-        <tr class="mark"><td class="day">10 <small>банкет</small></td><td>Чёрные классические</td><td>Блуза</td><td>Красные мюли</td></tr>
-        <tr><td class="day">11</td><td>Серые джинсы</td><td>Новый лонгслив + кардиган</td><td>On</td></tr>
-        <tr><td class="day">12</td><td>Полосатые</td><td>Чёрная рубашка поверх белой футболки</td><td>Premiata</td></tr>
-        <tr><td class="day">13</td><td>Синие джинсы</td><td>Вторая рубашка</td><td>On</td></tr>
-        <tr><td class="day">14 <small>обратно</small></td><td>Серые джинсы</td><td>Белая футболка + лонгслив</td><td>On</td></tr>
+        <tr><td class="k">Низ</td><td>Чёрные джоггеры <b>(новые)</b> · широкие тауп <b>(новые)</b> · серые джинсы · полосатые молочные · чёрные классические ушитые</td></tr>
+        <tr><td class="k">Верх простой</td><td>Белая футболка · две чёрные · белый, чёрный и серый лонгсливы · белая тонкая рубашка</td></tr>
+        <tr><td class="k">Верх соло</td><td>Молочная ВЕТРЫ <b>(новая)</b> · футболка с утёнком</td></tr>
+        <tr><td class="k">Поддёвка</td><td>Майки молочная и чёрная — только под тонкую рубашку</td></tr>
+        <tr><td class="k">Слои</td><td>Чёрный жилет — каждый день · бордовый жакет <b>(новый)</b> — один вечер · чёрная куртка — дорога и прохлада</td></tr>
+        <tr><td class="k">Обувь</td><td>On — весь день на ногах · Premiata — когда надо выглядеть · нюдовые лодочки — тот вечер · красные мюли и шлёпки — вечер и полосатые</td></tr>
       </tbody>
     </table>
   </div>
 </section>
 
 <section>
-  <h2>Ключевые образы</h2>
-  <p class="sub">Пять, которые стоит собрать заранее и не думать о них на месте.</p>
-  <div class="looks">
-    <div class="look"><h3>Аэропорт и перелёт</h3><p>Серые джинсы · белая футболка · серый лонгслив сверху · On Cloudnova</p><p class="note">Серый к серому, тон в тон — это и есть спокойный casual, без спортивности. Кардиган в ручную кладь: в самолёте холодно.</p></div>
-    <div class="look look--field"><h3>Разрез</h3><p>Своё только под спецодежду: чёрная футболка · серый лонгслив · синие джинсы</p><p class="note">Каску, жилет, куртку, штаны и обувь выдают на КПП-1. Волосы собрать, платок снять перед выходом из вахтовки.</p></div>
-    <div class="look"><h3>Офис и встречи</h3><p>Полосатые брюки · белая рубашка навыпуск · кардиган · Premiata</p><p class="note">Белое к белому в одном тоне. Совсем не похоже на привычную связку с чёрной рубашкой.</p></div>
-    <div class="look"><h3>Банкет</h3><p>Классические брюки · нарядная блуза · красные атласные мюли · серьги</p><p class="note">Акцент один и он внизу. Три вещи из четырёх уже дома.</p></div>
-    <div class="look"><h3>Банкет строже</h3><p>То же самое, но нюдовые лодочки вместо красных мюлей</p><p class="note">Телесный лак под брюки в пол сливается с ногой и удлиняет силуэт.</p></div>
+  <h2>Купить</h2>
+  <p class="sub">Пять позиций. Всё остальное закрыто тем, что есть.</p>
+  <div class="list" data-list>
+    <label class="item"><input type="checkbox" id="b0"><span class="item__txt"><span class="item__t">Бюстгальтер по размеру, 2 шт<span class="tag tag--1">0</span></span><span class="item__d">Брафиттинг с консультантом. Грудь посажена низко — пока точка груди внизу, весь верх ложится на неё как на полку</span></span></label>
+    <label class="item"><input type="checkbox" id="b1"><span class="item__txt"><span class="item__t">Футболка ВЕТРЫ, молочная, 54/56 — 7591 ₽<span class="tag tag--1">1</span></span><span class="item__d">DIVNO. Заказать сегодня, придёт 15-го. Драпировка даёт вертикаль на самой сложной зоне, рукав до локтя, длина ниже бёдер</span></span></label>
+    <label class="item"><input type="checkbox" id="b2"><span class="item__txt"><span class="item__t">Жакет «Влечение», бордо, 54 — 22 990 ₽<span class="tag tag--1">1</span></span><span class="item__d">Дивно. V со стойкой, вертикальные рельефы, складки расходятся от бедра. Бордо, не чёрный: чёрный жакет уже есть и не носится</span></span></label>
+    <label class="item"><input type="checkbox" id="b3"><span class="item__txt"><span class="item__t">Широкие брюки STUDIO, тауп — 5999 ₽<span class="tag tag--1">1</span></span><span class="item__d">Lime, средний оттенок. Не бежевые. Тёплый тон в одной семье с кремовыми кроссовками и нюдовыми лодочками</span></span></label>
+    <label class="item"><input type="checkbox" id="b4"><span class="item__txt"><span class="item__t">Джоггеры из джерси, чёрные — 3599 ₽<span class="tag tag--1">1</span></span><span class="item__d">Lime, новая пара взамен растянутых. Серый меланж не берём</span></span></label>
+    <label class="item"><input type="checkbox" id="b5"><span class="item__txt"><span class="item__t">Лонгслив оверсайз, розовый — 2599 ₽<span class="tag">2</span></span><span class="item__d">Lime, если сядет. Проверить, что длина уходит ниже бёдер и оверсайз реально свободный</span></span></label>
   </div>
 </section>
 
 <section>
-  <h2>Как мерить — 30 секунд</h2>
-  <p class="sub">Бирку не смотрим, смотрим на посадку.</p>
-  <ul class="plain">
-    <li><span><b>Брюки.</b> Сесть на стул и наклониться вперёд, как в машине. Пояс не врезается и не сползает сзади. Стоя между поясом и телом проходит ладонь плашмя. Это главный тест</span></li>
-    <li><span><b>Длина брюк.</b> Прямые — до косточки, широкие — до середины подошвы. Мерить в той обуви, что поедет</span></li>
-    <li><span><b>Рубашка.</b> Поднять обе руки вверх: пройма не тянет, низ не задирается. Плечевой шов на плече или чуть ниже, но не на середине руки</span></li>
-    <li><span><b>Трикотаж.</b> Провести ладонью по животу — ткань не липнет и не обрисовывает. Липнет значит тонкая, берём другую</span></li>
-    <li><span><b>Белый.</b> Приложить к белой футболке или к полосатым брюкам. Уходит в жёлтый или кремовый — не берём, это другой белый</span></li>
-    <li><span><b>Куртка.</b> Мерить сразу поверх кардигана и джемпера. Застёгивается свободно, руки поднимаются</span></li>
-    <li><span><b>Кроссовки.</b> В том носке, что поедет, и во второй половине дня</span></li>
-    <li><span><b>Рукав.</b> Закатать до середины предплечья прямо в кабинке. Запястья тонкие — это работает</span></li>
-    <li><span><b>Ворот.</b> Расстегнуть на две-три пуговицы. Если вещь смотрится только застёгнутой под горло — не берём</span></li>
-  </ul>
+  <h2>Сделать до вылета</h2>
+  <div class="list" data-list>
+    <label class="item"><input type="checkbox" id="d1"><span class="item__txt"><span class="item__t">Ушить чёрные классические брюки</span><span class="item__d">Ателье, сдать в субботу, забрать в понедельник днём. Они большеваты — под бордовый жакет нужны точно по фигуре</span></span></label>
+    <label class="item"><input type="checkbox" id="d2"><span class="item__txt"><span class="item__t">Жилет: катышки и отпарить</span><span class="item__d">Он главная повседневная вещь — должен выглядеть свежим</span></span></label>
+    <label class="item"><input type="checkbox" id="d3"><span class="item__txt"><span class="item__t">Майки: постирать, снять катышки</span><span class="item__d">Обе, молочную и чёрную</span></span></label>
+    <label class="item"><input type="checkbox" id="d4"><span class="item__txt"><span class="item__t">Разобрать джоггеры</span><span class="item__d">Растянутые оставить дома, едет одна новая пара</span></span></label>
+  </div>
 </section>
 
 <section>
-  <h2>Не покупать</h2>
+  <h2>Не делать</h2>
   <div class="stop">
     <ul>
-      <li>Пиджак. Обувь. Брюки. Куртку. Всё это закрыто</li>
-      <li>Чёрный верх. Именно от него и устали</li>
-      <li>Молочный и экрю в рубашке — она носится с холодно-белыми брюками. В обуви тёплое разрешено</li>
-      <li>Узкие джинсы и всё с жёстким поясом</li>
-      <li>Укороченные, подкатанные и зауженные к низу брюки</li>
-      <li>Тонкий облегающий трикотаж как базу</li>
+      <li>Майка соло и короткий рукав на самой полной части руки</li>
+      <li>Чёрный верх к таупу — рядом с ним тауп выглядит выцветшим</li>
+      <li>Кроссовки к полосатым брюкам — лёгкая ткань спорит с тяжёлой подошвой</li>
+      <li>Утёнок с джоггерами — объём на объём</li>
+      <li>ВЕТРЫ под жилет — две сложные вещи спорят</li>
+      <li>Светлый низ и укороченные брюки без стрелки</li>
+      <li>Ремни и пояса на талии</li>
+      <li>Покупать пиджак, обувь, куртку, футболки — всё это закрыто</li>
     </ul>
   </div>
 </section>
 
 <section>
-  <h2>Безопасность на объекте</h2>
-  <p class="sub">Каску, жилет, куртку, штаны и обувь выдают на КПП-1. Своё — только слой под ними.</p>
+  <h2>Суббота</h2>
   <ul class="plain">
-    <li><span>Под спецодежду — футболка и меринос: на смотровой ветер, а спецкуртка не греет</span></li>
-    <li><span>Волосы собрать</span></li>
-    <li><span>Шарф и платок снять перед выходом из вахтовки: свободные концы рядом с техникой опасны</span></li>
-    <li><span>Свои брюки под выдаваемые — те, что не жалко: угольная пыль въедается</span></li>
+    <li><span><b>С утра</b> — брафиттинг. «В кружевах», «Две Планеты» или Vasilissa</span></li>
+    <li><span><b>Дивно</b> — бордовый жакет. Мерить в той обуви, в которой пойдёте на вечер</span></li>
+    <li><span><b>Lime</b> — широкие тауп, чёрные джоггеры, розовый лонгслив на пробу</span></li>
+    <li><span><b>Ателье</b> — чёрные классические брюки везите с собой сразу</span></li>
   </ul>
-</section>
-
-<section>
-  <h2>В чемодан</h2>
-  <div class="chips">
-    <span class="chip">Дождевик-пончо</span><span class="chip">Запасные носки</span><span class="chip">Влажные салфетки</span><span class="chip">Карандаш от пятен</span><span class="chip">Пластырь</span><span class="chip">Powerbank</span><span class="chip">Очки от солнца и пыли</span>
+  <div class="chips" style="margin-top:16px">
+    <span class="chip">ВЕТРЫ заказать сегодня</span><span class="chip">Понедельник днём — забрать брюки</span><span class="chip">Вылет 17-го</span>
   </div>
 </section>
 
-<section>
-  <h2>Где искать за один день</h2>
-  <p class="sub">Что критично по посадке — заказать онлайн с примеркой сразу в двух размерах, 54 и 56. Что нельзя не померить — куртку и кроссовки — взять одним заходом в ТЦ.</p>
-  <ul class="plain">
-    <li><span><b>Плюс-сайз, сетка до 56:</b> Lalis, Noble, Svetlanova, Amour</span></li>
-    <li><span><b>Массмаркет с 54:</b> O'stin, Zolla, Befree, Gloria Jeans</span></li>
-    <li><span><b>Куртка и обувь:</b> Спортмастер, Finn Flare</span></li>
-  </ul>
-</section>
-
 <footer>
-  <p>Погода взята по климатической норме августа для Шахтёрска: около +17 днём, +13 ночью, 13 дождливых дней за месяц, ветер с Татарского пролива. Фактический прогноз проверить за два дня до вылета.</p>
-  <p>Ротация построена на две недели вокруг экскурсии 22 августа; точные даты и день банкета уточняются. Рост не учтён — длину проверяйте по критериям примерки.</p>
-  <p>Пять оставшихся вещей логично искать в том же магазине, где куплены чёрные брюки и чёрная рубашка: там уже известно, что ваш размер и посадка подходят. Пришлите название — подберу конкретные позиции.</p>
+  <p>Погода взята по фактическому прогнозу: 28–30°. Тёплые слои из капсулы убраны, лёгкие вещи и защита от солнца в приоритете.</p>
+  <p>Маршрут: Южно-Сахалинск → Шахтёрск → Владивосток на 1–2 дня и обратно. Вещи остаются в Южно-Сахалинске, на Владивосток собирается блок на два дня — он вынимается из любого режима, потому что низ монохромный и подходит к любому верху.</p>
 </footer>
 
 </div>
@@ -463,17 +266,14 @@ footer p{margin:0 0 8px}
   var boxes = Array.prototype.slice.call(document.querySelectorAll('[data-list] input[type=checkbox]'));
   var counter = document.getElementById('counter');
   var fill = document.getElementById('meterFill');
-  var KEY = 'shahtersk-capsule-v1';
-
+  var KEY = 'shahtersk-capsule-v2';
   var saved = {};
   try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
-
   function render(){
     var done = boxes.filter(function(b){ return b.checked; }).length;
     counter.textContent = done + ' / ' + boxes.length;
     fill.style.width = (boxes.length ? done / boxes.length * 100 : 0) + '%';
   }
-
   boxes.forEach(function(b){
     if (saved[b.id]) b.checked = true;
     b.addEventListener('change', function(){
@@ -482,7 +282,6 @@ footer p{margin:0 0 8px}
       render();
     });
   });
-
   render();
 })();
 </script>
